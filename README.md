@@ -5,9 +5,11 @@ An eBay-like e-commerce auction site that will allow users to post auction listi
 
 ### Getting Started
 Install Django
-'''
+```
 pip3 install Django
-'''
+```
 
 Create Django project
-''' django-admin startproject PROJECT_NAME'''
+```
+django-admin startproject PROJECT_NAME
+```
