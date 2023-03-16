@@ -35,14 +35,39 @@ python manage.py startapp APP_NAME
 Files created:
 
 - views.py (To describe what user sees when the visit a particular route/page - rendering of pages)
-  Example:
+
+Example:
 
 ```
+from djang.http import HttpResponse
 from django.shortcuts import render
 
 def index(request):
     return HttpResponse("Hello, world!")
 ```
+
+> Better to have urls.py file for each app
+
+Inside the urls.py file of the app
+
+```
+from django.urls import path
+
+urlpatterns = [
+    path("<URL_PATH>", views.FUNC_NAME, name="PATH_NAME")
+]
+```
+
+Inside the urls.py file of the project
+
+> Add path('APP_NAME/', include("APP_NAME.urls))
+
+### Everytime we create an app:
+
+- Install the app
+- Create urls.py for the app
+- Define urlpatterns = [...]
+- Add path of the new app in project's urls.py
 
 To Install the app
 
