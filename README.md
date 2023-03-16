@@ -13,3 +13,19 @@ Create Django project
 ```
 django-admin startproject PROJECT_NAME
 ```
+Files created:
+- manage.py (executable file - to execute commands on the Django project)
+- settings.py (contains important configuration settings for Django app - can modify settings to add features to the app)
+- urls.py (table of contents for the app - contain all the urls of the app)
+
+Make migrations for the app
+```
+python manage.py makemigrations APP_NAME
+```
+
+Apply migrations to the database
+```
+python manage.py migrate
+```
+
+Run server
