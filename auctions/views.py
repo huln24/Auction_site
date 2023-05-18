@@ -37,6 +37,7 @@ def login_view(request):
         return render(request, "auctions/login.html")
 
 
+# logs the user out and redirects them to the index page
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("index"))
