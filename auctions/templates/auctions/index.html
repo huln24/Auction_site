@@ -1,7 +1,7 @@
 {% extends "auctions/layout.html" %} {% block body %}
 <h2>Active Listings</h2>
 
-{% for listing in listings %} {% if listing.active %}
+{% for listing, current_bid in listings %} {% if listing.active %}
 <div class="listing_block">
   <div class="active-img-box">
     {% if listing.image %}
@@ -16,7 +16,7 @@
         style="text-decoration: none">
         <h5>{{listing.title}}</h5>
         </a>
-            Current Price: ${{listing.start_bid}}
+            Current Price: {% if current_bid is None %} ${{listing.start_bid}} {% else %} ${{current_bid.amount}}{% endif %}
             Description: {{listing.description}}
             Created: {{listing.created_at}}
         </pre>

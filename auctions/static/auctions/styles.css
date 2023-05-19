@@ -45,9 +45,12 @@ select {
 }
 
 .listing_block {
+    border-radius: 4px;
     max-height: 216;
-    border: 1px solid black;
+    width: 50%;
+    border: 1px solid green;
     padding: 10px;
+    padding-right: 10px;
     margin: 10px;
     display: flex;
 

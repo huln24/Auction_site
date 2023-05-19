@@ -10,8 +10,17 @@ from .models import User, AuctionListing, Bid, Category, Comment, Watchlist
 
 
 def index(request):
+    current_bids = []
+    list_of_listings = []
+    for listing in AuctionListing.objects.all():
+        list_of_listings.append(listing)
+        bids = Bid.objects.filter(listing=listing)
+        current_bids.append(bids.order_by("bidded_on").last())
+    listings = zip(list_of_listings, current_bids)
     return render(
-        request, "auctions/index.html", {"listings": AuctionListing.objects.all()}
+        request,
+        "auctions/index.html",
+        {"listings": listings},
     )
 
 
@@ -92,12 +101,18 @@ def watchlist(request):
 
     users_watchlist: Watchlist = Watchlist.objects.filter(user=request.user)
     listings = list()
+    current_bids = list()
     for listing in users_watchlist:
         listings.append(getattr(listing, "listing"))
+        bids = Bid.objects.filter(listing=listing.listing)
+        current_bids.append(bids.order_by("bidded_on").last())
+
+    listing_list = zip(listings, current_bids)
+
     return render(
         request,
         "auctions/watchlist.html",
-        {"listings": listings},
+        {"listings": listing_list},
     )
 
 
@@ -147,7 +162,7 @@ def bid_error(request, id, title):
                         listing=id, user=request.user
                     ).count(),
                     "winner": AuctionListing.objects.get(id=id).winner,
-                    "current_bid": current_bid.amount,
+                    "current_bid": current_bid,
                     "message": "Error! Bid must be greater than starting bid!",
                 },
             )
@@ -162,7 +177,7 @@ def bid_error(request, id, title):
                         listing=id, user=request.user
                     ).count(),
                     "winner": AuctionListing.objects.get(id=id).winner,
-                    "current_bid": current_bid.amount,
+                    "current_bid": current_bid,
                     "message": "Error! Bid must be higher than current bid!",
                 },
             )
