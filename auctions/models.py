@@ -7,10 +7,10 @@ class User(AbstractUser):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=64, null=True, default="Other")
+    name = models.CharField(max_length=64, null=True)
 
     def __str__(self):
-        return f"{self.category}"
+        return f"{self.name}"
 
 
 class AuctionListing(models.Model):

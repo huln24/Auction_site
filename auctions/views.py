@@ -15,6 +15,8 @@ def index(request):
     )
 
 
+# Renders a login form when a user tries to GET the page.
+# When a user submits the form using the POST request method, the user is authenticated, logged in, and redirected to the index page.
 def login_view(request):
     if request.method == "POST":
 
@@ -37,12 +39,14 @@ def login_view(request):
         return render(request, "auctions/login.html")
 
 
-# logs the user out and redirects them to the index page
+# Logs the user out and redirects them to the index page
+@login_required
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("index"))
 
 
+# Displays a registration form to the user, and creates a new user when the form is submitted
 def register(request):
     if request.method == "POST":
         username = request.POST["username"]
@@ -237,6 +241,6 @@ def listing(request, id, title):
                 listing=id, user=request.user
             ).count(),
             "winner": listing.winner,
-            "current_bid": current_bid.amount,
+            "current_bid": current_bid,
         },
     )

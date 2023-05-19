@@ -1,28 +1,25 @@
-{% extends "auctions/layout.html" %}
-
-{% block body %}
+{% extends "auctions/layout.html" %} {% block body %}
 <h2>Active Listings</h2>
 
-{% for listing in listings %}
-{% if listing.active %}
-<div id="listing_block">
-    <a href="{% url 'listing' listing.id listing.title %}" style="text-decoration: none;">
-        <div class="column" id="image_box_list">
-            {% if listing.image %}
-            <img src="{{listing.image}}">
-            {% endif %}
-        </div>
-        <div id="description_box" class="column">
-            <pre>
-            <h5>{{listing.title}}</h5>
-            Price: ${{listing.start_bid}}
-            {{listing.description}}
+{% for listing in listings %} {% if listing.active %}
+<div class="listing_block">
+  <div class="active-img-box">
+    {% if listing.image %}
+    <img src="{{listing.image}}" class="active-img" />
+    {% endif %}
+  </div>
+
+  <div class="description_box" class="column">
+    <pre>
+        <a
+        href="{% url 'listing' listing.id listing.title %}"
+        style="text-decoration: none">
+        <h5>{{listing.title}}</h5>
+        </a>
+            Current Price: ${{listing.start_bid}}
+            Description: {{listing.description}}
             Created: {{listing.created_at}}
         </pre>
-
-        </div>
-    </a>
+  </div>
 </div>
-{% endif %}
-{% endfor %}
-{% endblock %}
+{% endif %} {% endfor %} {% endblock %}

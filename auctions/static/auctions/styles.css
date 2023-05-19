@@ -1,5 +1,6 @@
 body {
     padding: 10px;
+    margin-left: 10px;
 }
 
 * {
@@ -8,7 +9,7 @@ body {
 }
 
 input {
-    padding: 8px;
+    padding: 6px;
     margin: 10px 0;
     border: 2px solid skyblue;
     border-radius: 10px;
@@ -16,7 +17,9 @@ input {
 }
 
 input[type="submit"] {
-    margin-top: 40px;
+    margin-top: 20px;
+    padding: 5px 10px 5px 10px;
+    width:auto;
 }
 
 label {
@@ -41,17 +44,93 @@ select {
     padding: 8px;
 }
 
-#listing_block {
+.listing_block {
+    max-height: 216;
     border: 1px solid black;
-    padding: 20px;
+    padding: 10px;
     margin: 10px;
+    display: flex;
+
 }
 
-#image_box_list {
+.active-img-box {
+    float: left;
+    width: 40%;
+    max-height: 220px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.active-img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.description-box {
+    float:right;
+}
+
+.listing-img-box {
+    width: 500px;
+    height: 500px;
+    border: solid 1px black;
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    margin: 20px 10px 20px;
+}
+
+.listing-title {
+    margin: 10px 0px 10px;
+}
+
+.listing-description {
+    margin-bottom: 30px;
+}
+
+.comment-submit {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.comment-content {
+    width: 80%;
+    height: 100px;
+    float: left;
+    margin-right: 20px;
+    align-self: flex-end;
+}
+
+.comment-btn {
+    float: right;
+    height: 40px;
+    align-self: flex-end;
+    margin-bottom: 0px;
+}
+
+.comment {
+    margin-left: 10px;
+    border-bottom: 1px solid rgb(160, 157, 157);
+}
+
+.comment-user_date {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+}
+
+.comment-detail {
+    text-indent: 40px;
+    margin: 12px 0px 12px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+/* .image_box_list {
+    max-height: 100%;
     height: fit-content;
     width: 30%;
     float: inline-start;
-}
+} */
 
 img {
     max-width: 100%;
@@ -62,4 +141,8 @@ img {
 .error_msg {
     color: red;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.info {
+    margin: 30px 0px 30px;
 }
