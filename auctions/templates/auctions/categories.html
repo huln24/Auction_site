@@ -5,10 +5,10 @@
 {% block body %}
 <ul>
     {% for category in categories %}
-    <li><a href="{% url 'category' category %}">{{category.category}}</a></li>
+    <li><a href="{% url 'category' category %}">{{category.name}}</a></li>
     {% endfor %}
     {% if no_category > 0 %}
-    <li><a href="{% url 'category' 'Other' %}">Other</a></li>
+    <li><a href="{% url 'category' 'null' %}">No category</a></li>
     {% endif %}
 </ul>
 

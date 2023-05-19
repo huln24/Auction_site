@@ -40,12 +40,14 @@
   {% else %} {% endif %} {% if not winner or listing.active %} {% if message %}
   <div class="error_msg">{{message}}</div>
   {% endif %}
+  {% if listing.active %}
   <form action="{% url 'bid_error' listing.id listing.title %}" method="post">
     {% csrf_token %}
     <label for="amount">Your bid: </label>
     <input type="text" id="amount" name="amount" />
     <input type="submit" value="Place Bid" name="bid" />
   </form>
+  {% endif %}
   {% endif %}
 </div>
 

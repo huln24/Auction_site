@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
@@ -36,7 +37,7 @@ class AuctionListing(models.Model):
     )
 
     # Sets field to now when object is created = True -> cannot modify
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(default=timezone.now)
 
     active = models.BooleanField(default=True)
     winner = models.ForeignKey(
@@ -55,7 +56,7 @@ class Bid(models.Model):
     bidder = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="bids_placed"
     )
-    bidded_on = models.DateTimeField(auto_now_add=True)
+    bidded_on = models.DateTimeField(default=timezone.now)
     listing = models.ForeignKey(
         AuctionListing, on_delete=models.CASCADE, related_name="bids"
     )
@@ -72,7 +73,7 @@ class Comment(models.Model):
         related_name="commented_comments",
     )
     # Sets field to now when object is created = True -> cannot modify
-    created_on = models.DateTimeField(auto_now_add=True)
+    created_on = models.DateTimeField(default=timezone.now)
     # When auction listing is deleted, all comments of that listing will be deleted
     listing = models.ForeignKey(
         AuctionListing, on_delete=models.CASCADE, related_name="comments"

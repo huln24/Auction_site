@@ -204,22 +204,36 @@ def categories(request):
 
 def category(request, category):
     # If no category, filters all lisings with null category and lists all listings without Category
-    if category == "Other":
+    if category == "null":
+        current_bids = []
+        list_of_listings = []
+        for listing in AuctionListing.objects.filter(category__isnull=True):
+            list_of_listings.append(listing)
+            bids = Bid.objects.filter(listing=listing)
+            current_bids.append(bids.order_by("bidded_on").last())
+        listings = zip(list_of_listings, current_bids)
         return render(
             request,
             "auctions/category_page.html",
             {
-                "listings": AuctionListing.objects.filter(category__isnull=True),
-                "category": category,
+                "listings": listings,
+                "category": "No category",
             },
         )
     else:
-        category_id = Category.objects.get(category=category).id
+        category_id = Category.objects.get(name=category).id
+        current_bids = []
+        list_of_listings = []
+        for listing in AuctionListing.objects.filter(category=category_id):
+            list_of_listings.append(listing)
+            bids = Bid.objects.filter(listing=listing)
+            current_bids.append(bids.order_by("bidded_on").last())
+        listings = zip(list_of_listings, current_bids)
         return render(
             request,
             "auctions/category_page.html",
             {
-                "listings": AuctionListing.objects.filter(category=category_id),
+                "listings": listings,
                 "category": category,
             },
         )
