@@ -203,7 +203,7 @@ def categories(request):
 
 
 def category(request, category):
-    # If no category, filters all lisings with null category and lists all listings without Category
+    # If no category, filters all listings with null category and lists all listings without Category
     if category == "null":
         current_bids = []
         list_of_listings = []
@@ -258,18 +258,24 @@ def listing(request, id, title):
             )
             comment.save()
             return HttpResponseRedirect(request.path_info)
-    bids = Bid.objects.filter(listing=listing)
-    current_bid = bids.order_by("bidded_on").last()
-    return render(
-        request,
-        "auctions/listing.html",
-        {
-            "listing": AuctionListing.objects.get(id=id),
-            "comments": Comment.objects.filter(listing=id),
-            "in_watchlist": Watchlist.objects.filter(
+    else:
+        bids = Bid.objects.filter(listing=listing)
+        current_bid = bids.order_by("bidded_on").last()
+        if request.user.is_authenticated:
+            in_watchlist = Watchlist.objects.filter(
                 listing=id, user=request.user
-            ).count(),
-            "winner": listing.winner,
-            "current_bid": current_bid,
-        },
-    )
+            ).count()
+        else:
+            in_watchlist = None
+
+        return render(
+            request,
+            "auctions/listing.html",
+            {
+                "listing": AuctionListing.objects.get(id=id),
+                "comments": Comment.objects.filter(listing=id),
+                "in_watchlist": in_watchlist,
+                "winner": listing.winner,
+                "current_bid": current_bid,
+            },
+        )

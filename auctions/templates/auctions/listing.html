@@ -13,7 +13,10 @@
   {% csrf_token %}
   <input type="submit" value="Close auction" name="close" />
 </form>
-{% endif %} {% if user != listing.creator%}
+{% endif %} 
+
+{% if user != listing.creator%}
+{% if user.is_authenticated %}
 <form action="{% url 'watchlist' %}" method="post">
   {% csrf_token %}
   <input name="listing_id" value="{{listing.id}}" type="hidden" />
@@ -23,6 +26,8 @@
   <input type="submit" value="Watchlist" name="add" />
   {% endif %}
 </form>
+{% endif %}
+
 {% endif %} {% endif %} {% endif %}
 <div class="listing-img-box">
   <img src="{{listing.image}}" alt="Product image" />
@@ -41,12 +46,14 @@
   <div class="error_msg">{{message}}</div>
   {% endif %}
   {% if listing.active %}
+  {% if user.is_authenticated %}
   <form action="{% url 'bid_error' listing.id listing.title %}" method="post">
     {% csrf_token %}
     <label for="amount">Your bid: </label>
     <input type="text" id="amount" name="amount" />
     <input type="submit" value="Place Bid" name="bid" />
   </form>
+  {% endif %}
   {% endif %}
   {% endif %}
 </div>
