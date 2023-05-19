@@ -279,3 +279,11 @@ def listing(request, id, title):
                 "current_bid": current_bid,
             },
         )
+
+
+def my_listings(reques):
+    return
+
+
+def my_bids(request):
+    return
