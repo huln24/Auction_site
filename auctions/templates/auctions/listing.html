@@ -3,7 +3,11 @@
 <h1 class="listing-title">{{listing.title}}</h1>
 {% if not listing.active %}
 <h2>Listing is closed</h2>
-<p>Winner is {{winner}}</p>
+{% if winner == user%}
+<p style="font-size: 24px; color: green;">You won the Bid!</p>
+{% else %}
+<p>Winner is <b>{{winner}}</b></p>
+{% endif %}
 {% else %} {% if user.is_authenticated %} {% if user == listing.creator %}
 <form action="{% url 'listing' listing.id listing.title %}" method="post">
   {% csrf_token %}
