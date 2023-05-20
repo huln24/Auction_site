@@ -1,7 +1,7 @@
 # Auction site
 
-CS50 Web: Project 2 <br />
-An eBay-like e-commerce auction site that will allow users to post auction listings, place bids on listings, comment on those listings, and add listings to a “watchlist”.
+An eBay-like e-commerce auction site that will allow users to post auction listings, place bids on listings, comment on those listings, and add listings to a “watchlist”.<br />
+CS50 Web: Project 2 
 
 ## Table of contents
 
