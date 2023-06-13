@@ -1,4 +1,4 @@
-# Auction site ![Django CI](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
+# Auction site ![Django CI](https://github.com/huln24/Auction_site/actions/workflows/django.yml/badge.svg)
 
 
 CS50 Web: Project 2 <br /><br />
