@@ -1,4 +1,5 @@
-# Auction site
+# Auction site ![Django CI](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
+
 
 CS50 Web: Project 2 <br /><br />
 An eBay-like e-commerce auction site that will allow users to post auction listings, place bids on listings, comment on those listings, and add listings to a “watchlist”.
